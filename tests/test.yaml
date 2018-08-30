@@ -1,0 +1,37 @@
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+apiServerCertSANs:    
+- 192.168.140.133
+- 192.168.140.135
+- master
+- node1
+#bootstrapTokens:
+#- groups:
+#  - system:bootstrappers:kubeadm:default-node-token
+#  token: abcdef.0123456789abcdef
+#  ttl: 48h0m0s
+#  usages:
+#  - signing
+#  - authentication
+  local:
+    extraArgs:
+      listen-client-urls: https://192.168.140.133:2379
+      advertise-client-urls: https://192.168.140.133:2379
+      listen-peer-urls: https://192.168.140.133:2380
+      initial-advertise-peer-urls: https://192.168.140.133:2380
+      initial-cluster: master=https://192.168.140.133:2380
+      initial-cluster-state: new
+    serverCertSANs:
+      - master
+      - 192.168.140.133
+    peerCertSANs:
+      - node1
+      - 192.168.140.135
+ServerExtraArgs:
+  endpoint-reconciler-type: lease
+
+networking:
+  podSubnet: 192.169.0.0/16  
+kubernetesVersion: v1.11.2 
+featureGates:  
+   CoreDNS: true

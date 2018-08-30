@@ -1,0 +1,11 @@
+USER=liudui # customizable
+mkdir -p /etc/kubernetes/pki/etcd
+mv /home/${USER}/docs/test2/ca.crt /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/ca.key /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/sa.pub /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/sa.key /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/front-proxy-ca.crt /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/front-proxy-ca.key /etc/kubernetes/pki/
+mv /home/${USER}/docs/test2/etcdca.crt /etc/kubernetes/pki/etcd/ca.crt
+mv /home/${USER}/docs/test2/etcdca.key /etc/kubernetes/pki/etcd/ca.key
+mv /home/${USER}/docs/test2/admin.conf /etc/kubernetes/admin.conf

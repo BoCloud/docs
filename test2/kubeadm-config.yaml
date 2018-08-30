@@ -1,0 +1,29 @@
+apiVersion: kubeadm.k8s.io/v1alpha2
+kind: MasterConfiguration
+kubernetesVersion: v1.11.2
+apiServerCertSANs:
+- 192.168.140.136
+- 192.168.140.135
+- 192.168.140.134
+- master
+- node1
+- node2
+api:
+  advertiseAddress: 192.168.140.136
+  bindPort: 6440
+etcd:
+  local:
+    extraArgs:
+      listen-client-urls: https://192.168.140.136:2379
+      advertise-client-urls: https://192.168.140.136:2379
+      listen-peer-urls: https://192.168.140.136:2380
+      initial-advertise-peer-urls: https://192.168.140.136:2380
+      initial-cluster: master=https://192.168.140.136:2380
+    serverCertSANs:
+      - master
+      - 192.168.140.136
+    peerCertSANs:
+      - master
+      - 192.168.140.136
+networking:
+  podSubnet: 192.168.0.0/16
